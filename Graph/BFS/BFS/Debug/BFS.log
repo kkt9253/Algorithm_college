@@ -1,0 +1,9 @@
+﻿  BFS.c
+C:\Users\kim47\Desktop\2학년2학기\알고리즘\algorithm\Graph\BFS\BFS\BFS.c(75,21): warning C4013: 'NewGraph'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\kim47\Desktop\2학년2학기\알고리즘\algorithm\Graph\BFS\BFS\BFS.c(76,9): warning C4013: 'AddEdge'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\kim47\Desktop\2학년2학기\알고리즘\algorithm\Graph\BFS\BFS\BFS.c(86,12): warning C4013: 'printGraph'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\kim47\Desktop\2학년2학기\알고리즘\algorithm\Graph\BFS\BFS\BFS.c(75,1): warning C4047: '초기화 중': 'Graph *'의 간접 참조 수준이 'int'과(와) 다릅니다.
+BFS.obj : error LNK2019: _NewGraph_main 함수에서 참조되는 확인할 수 없는 외부 기호
+BFS.obj : error LNK2019: _AddEdge_main 함수에서 참조되는 확인할 수 없는 외부 기호
+BFS.obj : error LNK2019: _printGraph_main 함수에서 참조되는 확인할 수 없는 외부 기호
+C:\Users\kim47\Desktop\2학년2학기\알고리즘\algorithm\Graph\BFS\Debug\BFS.exe : fatal error LNK1120: 3개의 확인할 수 없는 외부 참조입니다.

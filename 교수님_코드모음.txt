@@ -1,0 +1,400 @@
+버블
+
+#include <stdio.h>
+
+//두 인덱스 값을 바꾸는 함수
+void swap(int data[], int i, int j)
+{
+    int temp = data[i];
+    data[i] = data[j];
+    data[j] = temp;
+}
+
+
+
+void bubbleSort(int data[], int n)
+{
+    // `n-1` 통과
+    for (int k = 0; k < n - 1; k++)
+    {
+        for (int i = 0; i < n - 1 - k; i++)
+        {
+            if (data[i] > data[i + 1]) {
+                swap(data, i, i + 1);
+            }
+        }
+
+    }
+}
+
+//출력
+void printArray(int data[], int n)
+{
+    for (int i = 0; i < n; i++) {
+        printf("%d ", data[i]);
+    }
+}
+
+int main(void)
+{
+    int data[] = {3,31,48,73,8,11,20,29,65,15};
+    int n = sizeof(data) / sizeof(data[0]);
+
+    bubbleSort(data, n);
+    printArray(data, n);
+    return 0;
+}
+----------------------------------------------------
+
+삽입
+
+#include <stdio.h>
+ 
+void insertSort(int data[], int n)
+{
+    int i, key, j;
+    for (i = 1; i < n; i++) 
+    {
+        key = data[i];
+        j = i - 1;
+
+        while (j >= 0 && data[j] > key) 
+        {
+            data[j + 1] = data[j];
+            j = j - 1;
+        }
+       data[j + 1] = key;
+    }
+}
+
+void printArray(int data[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+        printf("%d ", data[i]);
+    printf("\n");
+}
+ 
+// Driver code
+int main()
+{
+	int data[] = {3,31,48,73,8,11,20,29,65,15};
+    int n = sizeof(data) / sizeof(data[0]);
+ 
+    insertSort(data, n);
+    printArray(data, n);
+ 
+    return 0;
+}
+
+--------------------------------------------------------
+
+퀵
+
+#include <stdio.h>
+
+void swap(int data[], int i, int j)
+{
+    int temp = data[i];
+    data[i] = data[j];
+    data[j] = temp;
+}
+
+int partition(int data[], int l, int r) {
+    int center = (l + r) / 2;
+    int pivot = data[center];
+
+    while (l <= r) {
+        while (data[l] < pivot) l++;
+        while (data[r] > pivot) r--;
+
+        if (l <= r) {
+            swap(data, l, r);
+            l++; r--;
+        }
+    }
+    return l;
+}
+
+void quick_sort(int data[], int l, int r) {
+    if (l < r) {
+        int p = partition(data, l, r);
+
+        quick_sort(data, l, p - 1);
+        quick_sort(data, p, r);
+    }
+}
+
+void quick_sort_(int data[], int size) {
+    quick_sort(data, 0, size - 1);
+}
+
+//출력
+void printArray(int data[], int n)
+{
+    for (int i = 0; i < n; i++) {
+        printf("%d ", data[i]);
+    }
+}
+
+int main(void)
+{
+    int data[] = { 3,31,48,73,8,11,20,29,65,15 };
+    int n = sizeof(data) / sizeof(data[0]);
+   //Insertsort(data, n);
+   // bubbleSort(data, n);
+    quick_sort_(data, n);
+    printArray(data, n);
+
+    return 0;
+}
+
+-------------------------------------------------------
+
+선택
+
+#include <stdio.h> 
+
+void swap(int data[], int i, int j)
+{
+    int temp = data[i];
+    data[i] = data[j];
+    data[j] = temp;
+}
+
+void selectSort(int data[], int size) {
+
+    for (int i = 0; i < size; i++) {
+        int min = i;
+
+        for (int j = i; j < size; j++) {
+            // 이전에 정렬된 부분 제외하고 i부터 끝까지
+
+            if (data[j] < data[min]) {
+                // 최소값을 찾았을 때
+
+                min = j;
+            }
+        }
+
+        swap(data, min, i);
+    }
+}
+void printdataay(int data[], int size)
+{
+    int i;
+    for (i = 0; i < size; i++)
+        printf("%d ", data[i]);
+    printf("\n");
+}
+
+int main()
+{
+    int data[] = { 3,31,48,73,8,11,20,29,65,15 };
+    int n = sizeof(data) / sizeof(data[0]);
+    selectSort(data, n);
+    printf("Sorted : \n");
+    printdataay(data, n);
+    return 0;
+}
+
+--------------------------------------------------------
+
+계수
+
+#include <stdio.h>
+# define max 100
+
+void countingsort(int data[], int n) {
+
+	int c[max];
+	for (int i = 0; i < max; i++) {
+		c[i] = 0; // 초기화 
+	}
+
+	for (int i = 0; i < n; i++) {
+		int j = data[i];
+		c[j]++; // 개수 세기 
+	}
+
+	for (int i = 0; i < max; i++) {
+		for (int j = 0; j < c[i]; j++) {
+			printf("%d ", i);
+		}
+	}
+}
+
+int main(void)
+{
+    int data[] = { 3,11,8,3,8,11,20,29,5,5 };
+    int n = sizeof(data) / sizeof(data[0]);
+	countingsort(data, n);
+
+
+    return 0;
+}
+
+----------------------------------------------------------
+
+병합
+
+#include <stdio.h>
+#define MAX 10
+
+void merge(int data[], int p, int q, int r) {
+    int i = p, j = q + 1, k = p;
+    int tmp[MAX];//임시 배열
+    while (i <= q && j <= r) {
+        if (data[i] <= data[j])
+            tmp[k++] = data[i++];
+        else
+            tmp[k++] = data[j++];
+    }//한쪽이 끝날때까지 정렬. 그 후 다른 한쪽에서 남은 값들은 이미 정렬됐으므로 그대로 넣어주면 됨.
+    while (i <= q)
+        tmp[k++] = data[i++];
+    while (j <= r)
+        tmp[k++] = data[j++];
+    for (int i = p; i <= r; i++) {
+        data[i] = tmp[i];
+    }//합병한 값을 원래 배열에 넣어줌
+}
+
+void mergeSort(int data[], int p, int r) {
+    if (p < r) {
+        int q = (p + r) / 2;
+        mergeSort(data, p, q);//전반부 정렬
+        mergeSort(data, q + 1, r);//후반부 정렬
+        merge(data, p, q, r);//합병
+    }
+}
+
+
+void remergeSort(int data[], int a) {
+      mergeSort(data, 0, a-1);
+}
+
+
+void printArray(int data[], int n)
+{
+    for (int i = 0; i < n; i++) {
+        printf("%d ", data[i]);
+    }
+}
+
+int main() {
+    
+    int data[MAX] = { 3,31,48,73,8,11,20,29,65,15 };
+    int n = sizeof(data) / sizeof(data[0]);
+    
+    remergeSort(data, n);
+    printArray(data, n);
+    return 0;
+}
+
+--------------------------------------------------------------
+
+재귀 
+
+-정수 N 이 주어질 때, 루프 없이 1부터 N까지 숫자를 인쇄 .
+
+#include <stdio.h>
+
+void printN(unsigned int n)
+{
+    if (n > 0) {
+        printN(n - 1);
+        printf("%d ", n);
+    }
+    return;
+}
+
+int main()
+{
+    int n = 10;
+    printN(n);
+    getchar();
+    return 0;
+}
+
+-정수 N 이 주어질 때, 루프 없이 N부터 1까지 숫자를 인쇄 .
+
+#include <stdio.h>
+
+void printN(unsigned int n)
+{
+    if (n > 0) {
+        printf("%d ", n);
+        printN(n - 1);
+    }
+    return;
+}
+
+int main()
+{
+    int n = 10;
+    printNos(n);
+    getchar();
+    return 0;
+}
+
+-배열 요소의 평균 
+
+#include<stdio.h>
+  
+float findMean(int A[], int N)
+{
+    if (N == 1)
+        return (float)A[N-1];
+    else
+        return ((float)(findMean(A, N-1)*(N-1) + A[N-1]) / N);
+}
+  
+int main()
+{
+    float Mean = 0;
+    int A[] = {1, 2, 3, 4, 5};
+    int N = sizeof(A)/sizeof(A[0]);
+    printf("%.2f\n", findMean(A, N));
+    return 0;
+}
+
+-재귀를 이용한 자연수의 합
+#include <stdio.h>
+
+int recurSum(int n)
+{
+    if (n <= 1)
+        return n;
+    return n + recurSum(n - 1);
+}
+
+int main()
+{
+    int n = 5;
+    printf("%d", recurSum(n));
+    return 0;
+}
+
+
+
+
+
+-재귀를 사용하여 10진수를 2진수로 변환
+#include <stdio.h>
+ 
+
+int find(int dl_number)
+{
+    if (d_number == 0)
+        return 0;
+    else
+        return (d_number % 2 + 10 * find(dl_number / 2));
+}
+
+ 
+int main()
+{
+    int dl_number = 10;
+    printf("%d", find(d_number));
+    return 0;
+}

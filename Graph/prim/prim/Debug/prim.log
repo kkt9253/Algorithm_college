@@ -1,0 +1,3 @@
+﻿  prim.cpp
+C:\Users\kim47\Desktop\2학년2학기\알고리즘\algorithm\Graph\prim\prim\prim.cpp(40,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  prim.vcxproj -> C:\Users\kim47\Desktop\2학년2학기\알고리즘\algorithm\Graph\prim\Debug\prim.exe
